@@ -1,0 +1,27 @@
+.env
+*.gguf
+*.safetensors
+*.bin
+checkpoint-*/
+outputs/
+models/
+__pycache__/
+~$*
+data/data_starter_before_*.xlsx
+data/data_starter_backup.xlsx
+scripts/leaderboard_data/
+# not part of the published model (run 1795745604)
+Project Brief.md
+assets/curves_*.json
+data/check_set.jsonl
+data/data_starter.csv
+data/train_column.jsonl
+data/train_column_all.jsonl
+data/train_column_all_boost2.jsonl
+data/train_column_all_boost2_b[6-9]*.jsonl
+results/tuned/
+results/run2_alpha32/
+results/report.*
+scripts/eval_app.py
+scripts/leaderboard*.py
+serving/adapter/

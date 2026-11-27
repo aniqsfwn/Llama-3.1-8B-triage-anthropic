@@ -1,0 +1,6 @@
+{
+  "run": "1795748203",
+  "note": "Same settings as training.json, retrained only to record the eval-loss graph in assets/eval_loss.png.",
+  "eval_dataset": "data/eval_column_test50.jsonl",
+  "eval_steps": 0.05
+}

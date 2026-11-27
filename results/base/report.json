@@ -1,0 +1,50 @@
+{
+  "n": 50,
+  "missing": [],
+  "summary": {
+    "all": {
+      "n": 50,
+      "valid_json": 1.0,
+      "json_only": 0.04,
+      "category_acc": 0.92,
+      "urgency_acc": 0.46,
+      "needs_human_acc": 0.52,
+      "needs_human_recall": 0.9473684210526315,
+      "needs_human_precision": 0.43902439024390244,
+      "exact_match": 0.36
+    },
+    "standard": {
+      "n": 30,
+      "valid_json": 1.0,
+      "json_only": 0.0,
+      "category_acc": 0.9,
+      "urgency_acc": 0.5333333333333333,
+      "needs_human_acc": 0.6,
+      "needs_human_recall": 1.0,
+      "needs_human_precision": 0.4782608695652174,
+      "exact_match": 0.4
+    },
+    "hard": {
+      "n": 20,
+      "valid_json": 1.0,
+      "json_only": 0.1,
+      "category_acc": 0.95,
+      "urgency_acc": 0.35,
+      "needs_human_acc": 0.4,
+      "needs_human_recall": 0.875,
+      "needs_human_precision": 0.3888888888888889,
+      "exact_match": 0.3
+    }
+  },
+  "invalid_reasons": {},
+  "urgency_confusion": {
+    "high->high": 13,
+    "high->low": 1,
+    "low->high": 1,
+    "low->low": 9,
+    "low->medium": 6,
+    "medium->high": 17,
+    "medium->low": 2,
+    "medium->medium": 1
+  }
+}

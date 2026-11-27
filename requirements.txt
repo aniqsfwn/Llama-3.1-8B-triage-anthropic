@@ -1,0 +1,3 @@
+openpyxl
+huggingface_hub
+unsloth

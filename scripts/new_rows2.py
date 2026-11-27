@@ -1,0 +1,21 @@
+from openpyxl import load_workbook
+D, R, P = ('delivery', 'refund_return', 'product_fault')
+B, A, G = ('payment_billing', 'account_access', 'general_enquiry')
+ROWS = [('Following up again on my order that never arrived. Still no news from anyone.', D, 'medium', True), ('I already sent two emails about the kettle that will not heat up and nobody replied.', P, 'medium', True), ('Kali ketiga saya tanya ni, bila parcel saya nak sampai?', D, 'medium', True), ('Your live chat closed on me again. This is my fourth try to get my account unlocked.', A, 'medium', True), ('I keep getting the same automatic reply about the double charge. I have asked before, I need a real person.', B, 'medium', True), ('Writing again about the promo code that was not applied to my order. Please answer this time.', B, 'medium', True), ('Saya dah report dua kali pasal mesin basuh bocor, tak ada siapa contact pun.', P, 'medium', True), ('Same problem as my last two messages: the app logs me out every time I open my orders.', A, 'medium', True), ('I phoned your hotline yesterday and again today about my late delivery and nobody called back.', D, 'medium', True), ('I asked twice last week whether the Sony soundbar is in stock at your Ipoh store and got no answer.', G, 'medium', True), ('This is my second request to exchange the shoes for a bigger size. No reply to the first one.', R, 'medium', True), ('Dah tiga kali email pasal caj berganda, satu pun tak berjawab.', B, 'medium', True), ('You said the refund would arrive by 1 October. It is now 5 November and there is nothing.', R, 'medium', True), ('The refund was due within 7 days of my return. That was over a month ago.', R, 'medium', True), ('Refund sepatutnya masuk 3 minggu lepas, sampai sekarang tak ada.', R, 'medium', True), ('My store credit was promised within a week. Five weeks later it still has not appeared.', R, 'medium', True), ('My refund was due 5 days ago and has not arrived yet.', R, 'medium', False), ('The refund should have come last week. Can you check on it?', R, 'medium', False), ('First time contacting you: my parcel is 3 days late.', D, 'medium', False), ('The kettle will not heat up. What should I do?', P, 'medium', False), ('I returned the shoes and the refund has not reached my card.', R, 'medium', False), ('I was charged RM50 more than the price shown at checkout.', B, 'medium', False), ('I want to cancel the order I placed this morning.', R, 'low', False), ('My card was charged a delivery fee even though the order said free shipping.', B, 'medium', False), ('Can my refund go to a different card from the one I paid with?', R, 'low', False), ('Can I pay in instalments with my credit card?', B, 'low', False), ('Do you have a newsletter I can subscribe to?', G, 'low', False), ('Can you delete my account and all my personal data?', A, 'low', False), ('Is there a membership program with member prices?', G, 'low', False), ('How many loyalty points do I have left?', A, 'low', False), ('Your website keeps showing an error page when I search for products.', G, 'medium', False), ('The blender works fine but I changed my mind. Can I return it?', R, 'low', False), ('The blender motor stopped after a week. I want it repaired.', P, 'medium', False), ('How long is the warranty on the Panasonic microwave?', G, 'low', False), ('My microwave stopped heating and it is still under warranty. How do I claim?', P, 'medium', False), ('How do I reset the air purifier filter light?', P, 'low', False), ('The parcel arrived but one item from my order is missing.', D, 'medium', False), ('How much is delivery to Kota Kinabalu?', D, 'low', False), ('Berapa caj penghantaran ke Kuching?', D, 'low', False)]
+wb = load_workbook('data/data_starter.xlsx')
+ws = wb['data_starter']
+existing_ids = {str(r[0]) for r in ws.iter_rows(min_row=2, values_only=True) if r[0]}
+existing_msgs = {r[1] for r in ws.iter_rows(min_row=2, values_only=True) if r[1]}
+n = 51
+added = 0
+for msg, cat, urg, nh in ROWS:
+    if msg in existing_msgs:
+        continue
+    while f'S{n:03d}' in existing_ids:
+        n += 1
+    ws.append([f'S{n:03d}', msg, cat, urg, nh])
+    existing_ids.add(f'S{n:03d}')
+    existing_msgs.add(msg)
+    added += 1
+wb.save('data/data_starter.xlsx')
+print(f'added {added} rows; sheet now has {ws.max_row - 1} rows')
